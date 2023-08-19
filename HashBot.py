@@ -61,6 +61,7 @@ def get_db():
     if datetime.datetime.now() - last_db_update > datetime.timedelta(minutes=30):
         res = requests.get("https://yum.selb.io/yumdb/players", auth=(Token.yum_db_user, Token.yum_db_pw))
         db = res.json()
+        last_db_update = datetime.datetime.now()
     return db
 
 @bot.command(name="hash")

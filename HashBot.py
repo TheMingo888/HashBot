@@ -59,7 +59,7 @@ async def on_message_delete(message: discord.Message):
 def get_db():
     global db, last_db_update
     if datetime.datetime.now() - last_db_update > datetime.timedelta(minutes=30):
-        res = requests.get("https://yum.selb.io/yumdb/players", auth=(Token.yum_db_user, Token.yum_db_pw))
+        res = requests.get("https://yum.selb.io/yumdb/api/v1/players", auth=(Token.yum_db_user, Token.yum_db_pw))
         db = res.json()
         last_db_update = datetime.datetime.now()
     return db
